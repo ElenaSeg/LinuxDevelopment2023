@@ -1,1 +1,1 @@
-# LinuxDevelopment2023
+# "GNU/Linux application software development" homeworks
