@@ -1,0 +1,26 @@
+.TH I18n 1
+.SH NAME
+I18n \- try to guess an integer from 1 to 100 that you guessed.
+.SH SYNOPSIS
+.B I18n
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B I18n
+tries to guess an integer from 1 to 100 that you guessed.
+.SH OPTIONS
+.TP
+.BR \-r
+display of numbers in the Roman system.
+.TP
+.BR \--help
+help message output.
+.SH FUNCTIONS
+.TP
+int main(int argc, char *argv[])
+the main function that implements the game process
+.TP
+char *to_roman(int num)
+converting arabic integers from 1 to 100 into roman
+.TP
+int from_roman(char *rom)
+converting roman integerss from 1 to 100 into arabic 

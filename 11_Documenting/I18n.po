@@ -1,0 +1,152 @@
+# Russian translations for  08_I18n package.
+# Copyright (C) 2023 THE  08_I18n'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the  08_I18n package.
+# example <example@example>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  08_I18n\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-17 22:23+0300\n"
+"PO-Revision-Date: 2023-11-18 19:32+0300\n"
+"Last-Translator: example <example@example>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: I18n.c:12
+#, c-format
+msgid "Usage: ./I18n [OPTIONS]\n"
+msgstr ""
+
+#: I18n.c:13
+#, c-format
+msgid ""
+"This program tries to guess an integer from 1 to 100 that you guessed\n"
+"\n"
+msgstr ""
+
+#: I18n.c:14
+#, c-format
+msgid "Arguments:\n"
+msgstr ""
+
+#: I18n.c:15
+#, c-format
+msgid "\t -r\t\tdisplay of numbers in the Roman system\n"
+msgstr ""
+
+#: I18n.c:16
+#, c-format
+msgid ""
+"\t--help\t\thelp message output\n"
+"\n"
+msgstr ""
+
+#: I18n.c:17
+#, c-format
+msgid ""
+"Functions:\n"
+"\n"
+msgstr ""
+
+#: I18n.c:18
+#, c-format
+msgid "\tint main(int argc, char *argv[])\n"
+msgstr ""
+
+#: I18n.c:19
+#, c-format
+msgid ""
+"\t\tthe main function that implements the game process\n"
+"\n"
+msgstr ""
+
+#: I18n.c:20
+#, c-format
+msgid "\tchar *to_roman(int num)\n"
+msgstr ""
+
+#: I18n.c:21
+#, c-format
+msgid ""
+"\t\tconverting arabic integers from 1 to 100 into roman\n"
+"\n"
+msgstr ""
+
+#: I18n.c:22
+#, c-format
+msgid "\tint from_roman(char *rom)\n"
+msgstr ""
+
+#: I18n.c:23
+#, fuzzy, c-format
+msgid ""
+"\t\tconverting roman integerss from 1 to 100 into arabic\n"
+"\n"
+msgstr "Пожалуйста, загадайте целое число от 1 до 100\n"
+
+#: I18n.c:41
+#, fuzzy, c-format
+msgid "Is your digit greater, less or equal than %s?\n"
+msgstr "Ваше число больше, меньше или равно %d\n"
+
+#: I18n.c:43
+#, c-format
+msgid "Is your digit greater, less or equal than %d?\n"
+msgstr "Ваше число больше, меньше или равно %d\n"
+
+#: I18n.c:60
+#, c-format
+msgid "Please, choose an integer from 1 to 100\n"
+msgstr "Пожалуйста, загадайте целое число от 1 до 100\n"
+
+#: I18n.c:66
+#, fuzzy, c-format
+msgid "Please, choose an integer from I to C\n"
+msgstr "Пожалуйста, загадайте целое число от 1 до 100\n"
+
+#: I18n.c:70
+#, c-format
+msgid ""
+"Unknown argument, please, read help:\n"
+"\n"
+msgstr ""
+
+#: I18n.c:75
+#, c-format
+msgid ""
+"Unknown arguments, please, read help:\n"
+"\n"
+msgstr ""
+
+#: I18n.c:84
+msgid "greater"
+msgstr "больше"
+
+#: I18n.c:85
+msgid "less"
+msgstr "меньше"
+
+#: I18n.c:86
+msgid "equal"
+msgstr "равно"
+
+#: I18n.c:91
+#, c-format
+msgid "Thanks for playing!\n"
+msgstr "Спасибо за игру!\n"
+
+#: I18n.c:92
+#, c-format
+msgid "Please, type greater/less/equal\n"
+msgstr "Пожалуйста, введите больше/меньше/равно\n"
+
+#: I18n.c:96
+#, c-format
+msgid "Are you sure? Let's try playing again\n"
+msgstr "Вы уверены? Давайте попробуем сыграть еще раз\n"
