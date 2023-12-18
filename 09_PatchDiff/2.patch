@@ -1,0 +1,117 @@
+--- maze1.c	2023-12-19 01:22:25.543123737 +0300
++++ maze2.c	2023-12-19 01:32:41.234827985 +0300
+@@ -5,10 +5,24 @@
+ 
+ int main(int argc, char **argv) {
+ 	int maze_size = 6;
++	char maze_w = '#';
++	char maze_p = '.';
+ 	if (argc > 1) {
+-		int new_size = atoi(argv[1]);
+-		if (new_size > 0) {
+-			maze_size = new_size;
++		if (strlen(argv[1]) >= 2) {
++			char new_maze_w = argv[1][0];
++			char new_maze_p = argv[1][1];
++			if (new_maze_w != 0) {
++				maze_w = new_maze_w;
++			}
++			if (new_maze_p != 0) {
++				maze_p = new_maze_p;
++			}
++		}
++	}
++	if (argc > 2) {
++		int new_maze_size = atoi(argv[2]);
++		if (new_maze_size > 0) {
++			maze_size = new_maze_size;
+ 		}
+ 	}
+ 	srand(time(NULL));
+@@ -29,10 +43,11 @@
+ 				continue;
+ 			}
+ 			r_walls[i * maze_size + n] = (char)(rand() % 2);
++		
+ 			if (r_walls[i * maze_size + n] == 0) {
+-				int maze_class = maze_sets[n+1];
++				int class = maze_sets[n+1];
+ 				for (int k = 0; k < maze_size; k++) { 
+-					if (maze_sets[k] == maze_class) {
++					if (maze_sets[k] == class) {
+ 						maze_sets[k] = maze_sets[n];
+ 					}
+ 				}		
+@@ -40,9 +55,9 @@
+ 		}
+ 		for (int j = 0; j < maze_size; j++) {
+ 			char fine = 0;
+-			for (int m = 0; m < maze_size; m++) {
+-				if (m == j) continue;
+-				if (maze_sets[m] == maze_sets[j] && d_walls[i * maze_size + m] == 0) {
++			for (int k = 0; k < maze_size; k++) {
++				if (k == j) continue;
++				if (maze_sets[k] == maze_sets[j] && d_walls[i * maze_size + k] == 0) {
+ 					fine = 1;
+ 					break;
+ 				}
+@@ -52,7 +67,6 @@
+ 			}
+ 		}
+ 		if (i == maze_size - 1) continue;
+-
+ 		for (int j = 0; j < maze_size; j++) {
+ 			if (d_walls[i * maze_size + j] == 1) {
+ 				maze_sets[j] = num;
+@@ -63,37 +77,38 @@
+ 	for (int i = 0; i < maze_size - 1; i++) {
+ 		if (maze_sets[i] != maze_sets[i + 1]) {
+ 			r_walls[(maze_size - 1) * maze_size + i] = 0;
++
+ 			int maze_class = maze_sets[i + 1];
+ 			for (int j = 0; j < maze_size; j++) {
+ 				if (maze_sets[j] == maze_class) maze_sets[j] = maze_sets[i];
+ 			}
+ 		}
+ 	}
+-	char *maze_r = calloc(2 * maze_size + 2, sizeof(char));	
+-	memset(maze_r, '#', 2 * maze_size + 1);
+-	maze_r[2 * maze_size + 1] = '\0';
+-	printf("%s\n", maze_r);
++	char *row = calloc(2 * maze_size + 2, sizeof(char));
++	memset(row, maze_w, 2 * maze_size + 1);
++	row[2 * maze_size + 1] = '\0';
++	printf("%s\n", row);
+ 	for (int i = 0; i < maze_size; i++) {
+-		memset(maze_r, '#', 2 * maze_size + 1);
++		memset(row, maze_w, 2 * maze_size + 1);
+ 		for (int j = 1; j < maze_size; j++) {
+-			maze_r[2 * j - 1] = '.';
++			row[2 * j - 1] = maze_p;
+ 			if (r_walls[i * maze_size + j - 1] == 0) {
+-				maze_r[2 * j] = '.';
++				row[2 * j] = maze_p;
+ 			}	
+ 		}
+-		maze_r[2 * maze_size - 1] = '.';
+-		printf("%s\n", maze_r);
+-		memset(maze_r, '#', 2 * maze_size + 1);
++		row[2 * maze_size - 1] = maze_p;
++		printf("%s\n", row);
++		memset(row, maze_w, 2 * maze_size + 1);
+ 		if (i == maze_size - 1) {
+-			printf("%s\n", maze_r);
++			printf("%s\n", row);
+ 			continue;
+ 		}
+ 		for (int j = 0; j < maze_size; j++) {
+ 			if (d_walls[i * maze_size + j] == 0) {
+-				maze_r[2 * j + 1] = '.';
++				row[2 * j + 1] = maze_p;
+ 			}
+ 		}
+-		printf("%s\n", maze_r);
++		printf("%s\n", row);
+ 	}
+ 	free(maze_sets);
+ 	free(r_walls);
