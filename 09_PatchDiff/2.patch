@@ -1,0 +1,90 @@
+--- maze1.c	2023-12-22 00:58:19.186095000 +0300
++++ maze2.c	2023-12-22 01:12:27.244288433 +0300
+@@ -1,46 +1,49 @@
+ #include <stdbool.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ #include <time.h>
+ 
+-void form_fences(char *grid, int enclosure_size);
++void form_fences(char *grid, int enclosure_size, char *pass_char, char *wall_char);
+ void show_maze(char *grid, int enclosure_size);
+-void insert_fence(char *grid, int magnitude);
++void insert_fence(char *grid, int magnitude, char *wall_char);
+ int calculate_enclosure_size(int magnitude);
+ void initialize_grid(char *grid, int enclosure_size);
+ 
+ int main(int argc, char *argv[]) {
+-    if (argc != 2) {
+-        printf("Usage: %s <magnitude>\n", argv[0]);
++    if (argc != 3) {
++        printf("Usage: %s <pass char> <magnitude>\n", argv[0]);
+         return 1;
+     }
+ 
+-    int magnitude = atoi(argv[1]);
++    char *pass_char = argv[1];
++    char *wall_char = argv[1] + 1;
++    int magnitude = atoi(argv[2]);
+     int enclosure_size = calculate_enclosure_size(magnitude);
+ 
+     char *grid = (char *)malloc(sizeof(char) * enclosure_size * enclosure_size);
+ 
+     initialize_grid(grid, enclosure_size);
+-    form_fences(grid, enclosure_size);
+-    insert_fence(grid, magnitude);
++    form_fences(grid, enclosure_size, pass_char, wall_char);
++    insert_fence(grid, magnitude, wall_char);
+     show_maze(grid, enclosure_size);
+ 
+     free(grid);
+     return 0;
+ }
+ 
+-void form_fences(char *grid, int enclosure_size) {
++void form_fences(char *grid, int enclosure_size, char *pass_char, char *wall_char) {
+     for (int row = 0; row < enclosure_size; row++) {
+         for (int col = 0; col < enclosure_size; col++) {
+             const int pos = row * enclosure_size + col;
+             if (row == 0 || row == enclosure_size - 1 || col == 0 || col == enclosure_size - 1) {
+-                grid[pos] = '#';
++                grid[pos] = wall_char[0];
+             }
+             else if ((row + 1) % 2 == 0 || (col + 1) % 2 == 0) {
+-                grid[pos] = '.';
++                grid[pos] = pass_char[0];
+             }
+             else {
+-                grid[pos] = '#';
++                grid[pos] = wall_char[0];
+             }
+         }
+     }
+@@ -55,16 +58,16 @@
+     }
+ }
+ 
+-void insert_fence(char *grid, int magnitude) {
++void insert_fence(char *grid, int magnitude, char *wall_char) {
+     const bool vertical_fence = rand() % 2;
+     const int fence_row = (1 + (rand() % (magnitude - 1))) * 2 - 1;
+     const int fence_col = (1 + (rand() % (magnitude - 1))) * 2;
+ 
+     if (vertical_fence) {
+-        grid[fence_row * (magnitude * 2 + 1) + fence_col] = '#';
++        grid[fence_row * (magnitude * 2 + 1) + fence_col] = wall_char[0];
+     }
+     else {
+-        grid[fence_col * (magnitude * 2 + 1) + fence_row] = '#';
++        grid[fence_col * (magnitude * 2 + 1) + fence_row] = wall_char[0];
+     }
+ }
+ 
+@@ -76,4 +79,4 @@
+     for (int i = 0; i < enclosure_size * enclosure_size; i++) {
+         grid[i] = ' ';
+     }
+-}
++}
+\ No newline at end of file

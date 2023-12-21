@@ -1,0 +1,25 @@
+--- maze2.c	2023-12-22 01:12:27.244288433 +0300
++++ maze3.c	2023-12-22 01:19:58.877801874 +0300
+@@ -11,14 +11,17 @@
+ void initialize_grid(char *grid, int enclosure_size);
+ 
+ int main(int argc, char *argv[]) {
+-    if (argc != 3) {
+-        printf("Usage: %s <pass char> <magnitude>\n", argv[0]);
++    if (argc != 4) {
++        printf("Usage: %s <seed> <pass_char> <magnitude>\n", argv[0]);
+         return 1;
+     }
+ 
+-    char *pass_char = argv[1];
+-    char *wall_char = argv[1] + 1;
+-    int magnitude = atoi(argv[2]);
++    unsigned int seed = atoi(argv[1]);
++    srand(seed);
++
++    char *pass_char = argv[2];
++    char *wall_char = argv[2] + 1;
++    int magnitude = atoi(argv[3]);
+     int enclosure_size = calculate_enclosure_size(magnitude);
+ 
+     char *grid = (char *)malloc(sizeof(char) * enclosure_size * enclosure_size);
